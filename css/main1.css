@@ -17,13 +17,37 @@ p {
 
 .global-nav {
     height : 44px;
+}  
+
+.local-nav {
+    height: 52px;
+    border-bottom: 1px solid #ddd
 }
 
-.global-nav-link {
+.global-nav-links,
+.local-nav-links {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 100%;
     max-width: 1000px;
     margin: 0 auto;
+}
+.global-nav-links {
+    justify-content: space-between;
+}
+.local-nav-links a:not(.product-name){
+    margin-left:2em;
+    font-size: 0.8rem;
+}
+.product-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+
+}
+.product-name {
+    margin-right: auto;
+}
+a {
+    color: rgb(28, 29, 31);
+    text-decoration: none;
 }
