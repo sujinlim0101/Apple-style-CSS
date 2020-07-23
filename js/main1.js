@@ -47,6 +47,17 @@
                 sceneInfo[i].scrollHeight = sceneInfo[i].heightNum * window.innerHeight,
                 sceneInfo[i].objs.container.style.height = `${sceneInfo[i].scrollHeight}px`;
         };
+        let totalScrollHeight = 0;
+        yOffset = window.pageYOffset;
+        for (let i = 0; i < sceneInfo.length; i++) {
+            totalScrollHeight += sceneInfo[i].scrollHeight;
+            if (totalScrollHeight >= yOffset) {
+                currentScene = i;
+                break;
+            }
+        }
+        document.body.setAttribute('id',`show-scene-${currentScene}`);
+
     }
 
     function scrollLoop() {
@@ -58,16 +69,18 @@
             currentScene++;
         }
         if (yOffset < prevScrollHeight) {
-            if(currentScene === 0) return;
+            if(currentScene === 0) return; // 모바일에서 브라우저 바운스 효과로 인해 마이너스 값이 되는 것을 방지
             currentScene--;
         }
-        console.log(currentScene);
+        document.body.setAttribute('id',`show-scene-${currentScene}`);
     }
 
-    window.addEventListener('resize', setLayout);
     window.addEventListener('scroll', () => {
         yOffset = window.pageYOffset;
         scrollLoop();
     })
-    setLayout();
-})()
+    //load 대신 DOMContentLoaded 써도됨
+    window.addEventListener('load', setLayout);
+    window.addEventListener('resize', setLayout);
+
+})(); 
