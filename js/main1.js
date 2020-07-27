@@ -3,6 +3,7 @@
     let yOffset = 0; // windpw/pageYOffset 대신 쓸 변수
     let prevScrollHeight = 0; // 현재 스크롤 위치 보다 이전에 위치한 스크롤 섹션들의 높이의 합
     let currentScene = 0; //현재의 scene 
+    let enterNewScene = false; //새로운 신이 시작되는 순간 true
 
     const sceneInfo = [
         {//0
@@ -79,14 +80,14 @@
         const values = sceneInfo[currentScene].values;
         const currentYOffset = yOffset - prevScrollHeight;
         //console.log(values.messageA_opacity);
-        console.log(calcValues(values.messageA_opacity, currentYOffset));
+        // console.log(calcValues(values.messageA_opacity, currentYOffset));
 
         switch (currentScene) {
             case 0: 
                 let messageA_opacity_in  = calcValues(values.messageA_opacity, currentYOffset);
                 // console.log(objs.messageA);
                 objs.messageA.style.opacity = messageA_opacity_in;
-                
+
                 break; 
             case 1: 
                 break;
@@ -98,18 +99,22 @@
     }
 
     function scrollLoop() {
+        enterNewScene = false;
         prevScrollHeight = 0;
         for (let i = 0; i < currentScene; i++) {
             prevScrollHeight += sceneInfo[i].scrollHeight;
         }
         if (yOffset > prevScrollHeight + sceneInfo[currentScene].scrollHeight) {
+            enterNewScene = true;
             currentScene++;
         }
         if (yOffset < prevScrollHeight) {
+            enterNewScene = true;
             if(currentScene === 0) return; // 모바일에서 브라우저 바운스 효과로 인해 마이너스 값이 되는 것을 방지
             currentScene--;
+            document.body.setAttribute('id',`show-scene-${currentScene}`);
         }
-        document.body.setAttribute('id',`show-scene-${currentScene}`);
+        if (enterNewScene) return;
         playAnimation();
     }
 
