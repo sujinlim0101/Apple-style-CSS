@@ -98,6 +98,7 @@ a {
     color: rgb(29,29,31);
 }
 .desc-message {
+    opacity: 0;
     font-weight: bold;
     width: 50%;
 }
@@ -106,12 +107,12 @@ a {
     height: 100px;
     background: rgb(29,29,31);
 }
-#scroll-section-2 b {
+#scroll-section-2 .b {
     top: 10%;
     left: 40%;
 
 }
-#scroll-section-2 c {
+#scroll-section-2 .c {
     top: 15%;
     left: 45%;
     
@@ -151,6 +152,8 @@ a {
 #show-scene-2 #scroll-section-2 .sticky-elem,
 #show-scene-3 #scroll-section-3 .sticky-elem {
     display: block;
+    will-change: transform, opacity;
+
 }
 @media (min-width: 1024px) {
     #scroll-section-0 h1 {
@@ -176,7 +179,6 @@ a {
         font-size: 1.5vw;
     }
     .desc-message {
-        font-weight: bold;
         width: 20%;
     }
     .mid-message {
