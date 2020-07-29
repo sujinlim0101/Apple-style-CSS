@@ -16,15 +16,24 @@ p {
 }
 
 .global-nav {
+    position: absolute;
+    z-index: 10;
+    top:0;
+    left:0;
+    width:100%;
     height : 44px;
     padding: 0 1rem;
 }  
 
 .local-nav {
-    height: 52px;
+    position: absolute;
+    top: 45px;
+    z-index: 11;
+    height: 52px;    
+    width:100%;
     border-bottom: 1px solid #ddd;
     padding: 0 1rem;
-
+    border-bottom: 1px solid #ddd;
 }
 
 .global-nav-links,
@@ -61,6 +70,9 @@ a {
 #scroll-section-0 h1 {
     font-size: 4rem;
     text-align: center;
+    position: relative;
+    top: -10vh;
+    z-index: 5;
 }
 
 .main-message {
@@ -154,6 +166,16 @@ a {
     display: block;
     will-change: transform, opacity;
 
+}
+.sticky-elem-canvas {
+    top: 0;
+    height: 100%;
+
+}
+.sticky-elem-canvas canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 @media (min-width: 1024px) {
     #scroll-section-0 h1 {
