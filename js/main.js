@@ -176,6 +176,7 @@
 		document.body.setAttribute('id', `show-scene-${currentScene}`);
 
 		const heightRatio = window.innerHeight / 1080;
+		console.log(heightRatio);
 		sceneInfo[0].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`;
 		sceneInfo[2].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`;
 	}
